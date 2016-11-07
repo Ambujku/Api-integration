@@ -1,0 +1,133 @@
+<html lang="en">
+	<head>
+	  <title>Registration</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	  <style type="text/css">
+	  #submit{
+    	float: right;
+    }
+    #clear{
+    	float: left;
+    }
+    </style>
+
+	</head>
+	{% load staticfiles %}
+	<body>
+
+	<div class="container" align="center">
+	<h2>Update Form</h2><br>
+	<div class="col-sm-4 text-center">
+	  <h2>Form</h2>
+	<form id="form" action="" method="post" class="ajax">
+
+	{% csrf_token %}
+
+	first_name: <input type="text" name="f_name"><br>
+	middle_name: <input type="text" name="m_name"><br>
+	last_name: <input type="text" name="l_name"><br>
+	pan no: <input type="text" name="pan_number"><br>
+	gender: <input type="text" name="gender"><br>
+	marital status: <input type="text" name="marital_status"><br>
+	ocuupation: <input type="text" name="occupation"><br>
+	monthly post tax income: <input type="number" name="monthly_post_tax_income"><br>
+	mothers maiden name: <input type="text" name="mothers_maiden_name"><br>
+	channel: <input type="text" name="channel"><br>
+	risk_profile: <input type="text" name="risk_profile"><br>
+	kyc:<input type="text" name="kyc_id"><br>
+	<input type="submit" value="submit" id="submit">
+	</form>
+	<button id="clear">Log out</button>
+	</div>
+	
+	<div class="col-sm-4 text-center" align="left">
+	<form action="" method = "post" accept="image/jpg, image/jpeg, image/png" enctype="multipart/form-data" class= "form2">
+	<h3>Upload your Profile pic</h3>
+	<input type="file" name="image" class="image" id="cheque"/><br><br>
+	<input type="submit" value="Submit" id="upload">
+	</form>
+	</div>
+
+	<div class="col-sm-4 text-center" align="left">
+	<form action="" method = "post" accept="image/jpg, image/jpeg, image/png" enctype="multipart/form-data" class= "form2">
+	<h3>Upload your Sign</h3>
+	<input type="file" name="image" class="image" id="cheque"/><br><br>
+	<input type="submit" value="Submit" id="upload">
+	</form>
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static "app3.js" %}"></script>
+<script type="text/javascript">
+	$(document).ready(function(e){ 
+        $('form.form2').on("submit", function(e) {
+        e.preventDefault();
+        var formdata = new FormData(this); 
+        if (formdata) {
+
+            $.ajax({
+                   url : 'http://54.71.104.127:8080/api/v1/85/kyc/pp?filename=aish.jpeg',
+                   headers: {
+                    'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphY2tAZ21haWwuY29tODUifQ.EoqxOQozwhiz7LstG5p6XzOR-HFMaOtSw3u5rVVe3G0',
+                    },
+                   type : 'POST',
+                   data : formdata,
+                   processData: false, 
+                   contentType: false,
+                   success : function(data) {
+                       console.log(data);
+                       alert('success');
+                   },
+                   error : function(data) {
+                       console.log(data);
+                       alert('error');
+                   }
+            });
+                    }
+        });            
+});
+
+		$(document).ready(function(e){ 
+        $('form.form3').on("submit", function(e) {
+        e.preventDefault();
+        var formdata = new FormData(this); 
+        if (formdata) {
+
+            $.ajax({
+                   url : 'http://54.71.104.127:8080/api/v1/85/kyc/sign?filename=aish.jpeg',
+                   headers: {
+                    'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphY2tAZ21haWwuY29tODUifQ.EoqxOQozwhiz7LstG5p6XzOR-HFMaOtSw3u5rVVe3G0',
+                    },
+                   type : 'POST',
+                   data : formdata,
+                   processData: false, 
+                   contentType: false,
+                   success : function(data) {
+                       console.log(data);
+                       alert('success');
+                   },
+                   error : function(data) {
+                       console.log(data);
+                       alert('error');
+                   }
+            });
+                    }
+        });            
+});
+</script>	  
+
+
+<script type="text/javascript" src="{% static "logout.js" %}"></script>
+	</body>
+		
+	</html>

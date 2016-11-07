@@ -1,0 +1,61 @@
+<html lang="en">
+	<head>
+	  <title>Registration</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <style type="text/css">
+	  #submit, #end1{
+    	float: right;
+    }
+      #clear, #start1 {
+      	float: left;
+      }  	
+	  </style>
+
+	</head>
+	{% load staticfiles %}
+	<body>
+
+	<div class="container" align="center">
+	  <h2>Fill Your Goal</h2><br>
+
+	<h2>Form</h2>
+	<form id="form" action="" method="post" class="ajax">
+
+	{% csrf_token %}
+
+	Goal: <input type="text" name="goal_name"><br>
+	Goal Amount: <input type="number" min="0" name="goal_amount"><br>
+	Goal monthly contribution <input type="number" name="goal_monthly_contribution"><br>
+	<div id="start1">goal_start_time: <input type="text" name="goal_start_time" id="start" ></div><br>
+	<div id="end1">goal_end_time: <input type="text" name="goal_end_time" id="end"></div><br>
+	<br>
+
+
+
+	<input type="submit" id="submit" value="submit" onclick="myFunction()" align="left">
+<br>
+
+	</form>
+		<div>
+	  <button id="clear">Log out</button>
+	</div>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	  <script type="text/javascript" src="{% static "app4.js" %}"></script>
+
+	  <script type="text/javascript">
+	    $( function() {
+	    	$( "#start" ).datepicker({minDate: 0});
+	    	$( "#end" ).datepicker({minDate: 1});
+
+          } );
+  	  </script>
+<button id="clear">Log out</button>
+<script type="text/javascript" src="{% static "logout.js" %}"></script>  
+
+	</body>
+	</html>

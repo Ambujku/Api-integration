@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DashBorad</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+<h2> The user description is here: </h2>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		var x = sessionStorage.getItem('user_id');
+		var result;
+	 	$.ajax({
+	 		type: 'GET',
+	 		crossDomain : true,
+			headers: {
+				'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphY2tAZ21haWwuY29tODUifQ.EoqxOQozwhiz7LstG5p6XzOR-HFMaOtSw3u5rVVe3G0',
+				},
+	 		url : 'http://54.71.104.127:8080/api/v1/' + '85' + '/get/profile',
+	 		dataType: 'json',
+	 		success: function (data) {
+	 			$('#email').html(data.user_details.email);
+	 			$('#fname').html(data.user_details.f_name);
+	 			$('#mname').html(data.user_details.m_name);
+	 			$('#lname').html(data.user_details.l_name);
+	 			$('#gen').html(data.user_details.gender);
+	 			$('#dob').html(data.user_details.date_of_birth);
+	 			$('#ms').html(data.user_details.marital_status);
+	 			$('#as').html(data.user_details.access_status);
+	 			$('#mi').html(data.user_details.monthly_post_tax_income);
+	 			$('#Pn').html(data.user_details.pan_number);
+	 			$('#occ').html(data.user_details.occupation);
+	 			$('#mmn').html(data.user_details.mothers_maiden_name);
+	 			$('#PS').html(data.user_details.phone_status);
+
+	 			// console.log(data.user_details.email);
+	 			},
+	 		error: function (data) {
+	 			console.log(data);
+	 			}
+
+                 });
+	 	$.ajax({
+	 		type: 'GET',
+	 		crossDomain : true,
+			headers: {
+				'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphY2tAZ21haWwuY29tODUifQ.EoqxOQozwhiz7LstG5p6XzOR-HFMaOtSw3u5rVVe3G0',
+				},
+	 		url : 'http://54.71.104.127:8080/api/v1/' + '85' + '/get/goals',
+	 		dataType: 'json',
+	 		success: function (data) {
+	 			for(var i=0;i<data.goal.length;i++)
+	 			{
+	 				jQuery('#list').append(data.goal[i].goal_name+'<br />');
+	 				console.log(data.goal[i].goal_name);
+	 			}
+	 			},
+	 		error: function (data) {
+	 			console.log(data);
+	 			}
+
+                 });
+	 	
+
+
+
+	 	$.ajax({
+	 		type: 'GET',
+	 		crossDomain : true,
+			headers: {
+				'access_token': sessionStorage.getItem('access_token'),
+				},
+	 		url : 'http://54.71.104.127:8080/api/v1/' + '85' + '/get/goal/',
+	 		dataType: 'json',
+	 		success: function (data) {
+	 			$('#uid').html(data.goals.users_user_id);
+	 			$('#gn').html(data.goals.goal_name);
+	 			$('#ga').html(data.goals.goal_amount);
+	 			$('#gs').html(data.goals.goal_status);
+	 			$('#gid').html(data.goals.goal_id);
+	 			$('#gst').html(data.goals.goal_start_time);
+	 			$('#get').html(data.goals.goal_end_time);
+	 			$('#gmc').html(data.goals.goal_monthly_contribution);
+	 			// console.log(data.goals.goal_amount);
+	 			},
+	 		error: function (data) {
+	 			console.log(data);
+	 			}
+
+                 });
+
+             });
+</script>
+  <div class="row vdivide">
+    <div class="col-sm-4 text-center">
+<div id="user" align="left">
+	<h3> User Info</h3>
+	Email:<span id="email"></span><br><br>
+	Name <br>(First name):<span id="fname"></span><br>
+	(Middle name):<span id="mname"></span><br>
+	(Last name):<span id="lname"></span><br><br>
+	Gender:<span id="gen"></span><br><br>
+	Date of Birth:<span id="dob"></span><br><br>
+	Marital Status:<span id="ms"></span><br><br>
+	Account Status:<span id="as"></span><br><br>
+	Monthly Post Income Salary:<span id="mi"></span><br><br>
+	Pan_no:<span id="Pn"></span><br><br>
+	Phone:<span id="Ph"></span><br><br>
+	Occupation:<span id="occ"></span><br><br>
+	Mothers_maiden Name:<span id="mmn"></span><br><br>
+	Phone_status:<span id="PS"></span><br><br>
+	KYC_id:<span id=""></span><br><br>
+
+<button><a href="/update/">EDIT or ADD</a></button>
+
+</div>
+
+	<button id="clear">Log out</button>
+</div>
+<div class="col-sm-4 text-center">
+<div id="goal" align="left">
+<h3>Goal List: </h3>
+list:
+<br><span id="list"></span><br>
+</div>
+<button><a href="/goal/">EDIT or ADD</a></button>
+</div>
+<div class="col-sm-4 text-center">
+<div id="goal" align="left">
+<h3> User's Goal</h3>
+User Id:<span id="uid"></span><br>
+Your Goal Name:<span id="gn"></span><br>
+Goal Amount:<span id="ga"></span><br>
+Goal Status:<span id="gs"></span><br>
+Goal Id:<span id="gid"></span><br>
+goal start Time:<span id="gst"></span><br>
+goal end time:<span id="get"></span><br>
+goal monthly contribution:<span id="gmc"></span><br>
+
+</div>
+</div>
+</div>
+<!-- 	  <script type="text/javascript">
+	  var Storage = sessionStorage.clear();
+
+	  var clear = document.getElementById('clear')
+	  clear.onclick = function () {
+	  	alert("You are successfully logged out")
+	  	Storage;
+	  	window.location.href = "/login/";
+
+      }
+           
+	  </script> -->
+</body>
+</html>

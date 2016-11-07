@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container" align="center">
+
+  <!-- <h2>Upload Your KYC</h2><br> -->
+<form action="" method = "post" accept="application/pdf, image/jpg, image/jpeg, image/png" class= "ajax">
+  <br>
+  {% csrf_token %}
+  Passport<br><input type="file" name="pic" id="passport_pic"><br>
+<!--   Pan card<br><input type="file" name="pan_card" id="pan_card"><br>
+  Aadhar<br><input type="file" name="aadhar" id="aadhar"><br>
+  Voter id<br><input type="file" name="voter_id" id="voter_id"><br>
+  Cheque<br><input type="file" name="cheque" id="cheque"><br> -->
+
+<input type="submit" value="Submit" id="upload">
+</form> 
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+// var urlname = document.getElementById("passport_pic").value;
+// var x= sessionStorage.getItem('user_id');
+
+
+$(document).on("click", "#upload", function() {
+  var file_data = $("#passport_pic").prop("files")[0];   // Getting the properties of file from file field
+  var form_data = new FormData();                  // Creating object of FormData class
+  form_data.append("file", file_data)              // Appending parameter named file with properties of 
+  $.ajax({
+                url: "http://54.71.104.127:8080/api/v1/85/kyc/passport?filename=Ambujesh.jpg",
+                type: 'post',
+                crossDomain : true,
+                headers: {
+                  'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphY2tAZ21haWwuY29tODUifQ.EoqxOQozwhiz7LstG5p6XzOR-HFMaOtSw3u5rVVe3G0',
+                  },
+                dataType: 'script',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: function() {
+                  alert('good');
+                  }                        
+       });
+});
+
+
+
+//       $('form.ajax').on('submit', function(e){
+//       // var that = $(this),
+//       var formData = new FormData($(this));
+//       $.ajax({
+//             // url: "http://54.71.104.127:8080/api/v1/"+x+"/kyc/passport?filename=" + urlname,
+//             url: "http://54.71.104.127:8080/api/v1/85/kyc/passport?filename=Registration.jpg",
+//             type: "POST",
+//             crossDomain : true,
+//             headers: {
+//               'access_token': sessionStorage.getItem('access_token'),
+//               },
+//             data: formData,
+//             async: false,
+//             success: function (msg) {
+//                 console.log(msg);
+//             },
+//             error: function(response){
+//             alert('Error');
+//         }
+// });
+//         e.preventDefault();
+//     });
+ 
+</script>
+<button id="clear">Log out</button>
+<script type="text/javascript" src="{% static "logout.js" %}"></script>
+</body>
+</html>

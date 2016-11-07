@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+{% load staticfiles %}
+<body>
+<div class="container">
+<div class=form01>
+<form action="" method = "post" accept="image/jpg, image/jpeg, image/png" enctype="multipart/form-data" class= "form1">
+<br>
+<h3> Please upload Your pan card image </h3>
+  {% csrf_token %}
+ <input type="file" name="image" class="image_to_upload" id="pan"/><br>
+<br>
+<br>
+<input type="submit" value="Upload" id="upload1">
+<br>
+</form>
+</div>
+<form action="" method = "post" accept="image/jpg, image/jpeg, image/png" enctype="multipart/form-data" class= "form2">
+<h3> Please upload Document for address proof</h3>
+<select id="sel">
+  <option>passport</option>
+  <option>Voter</option>
+  <option>Aadhar</option>
+  <option>Cheque</option>
+  <option>driving licence</option>
+  <option>Utility bill(Electricity / Teleplone) </option>
+
+  <input type="file" name="image" class="ad" id="add"/>
+</select>
+<br>
+<br>
+<input type="submit" value="Upload" id="upload2">
+<br>
+</form>
+<form action="" method = "post" accept="image/jpg, image/jpeg, image/png" enctype="multipart/form-data" class= "form3">
+<h3> Please upload cheque</h3>
+<input type="file" name="image" class="image" id="cheque"/><br>
+<br>
+<input type="submit" value="Upload" id="upload3">
+</form> 
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static "upload.js" %}"></script>
+<button id="clear">Log out</button>
+<script type="text/javascript" src="{% static "logout.js" %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DashBorad</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+<div align="center"><h2> User Description: </h2> </div><br><br>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+{% load staticfiles %}
+<script type="text/javascript" src="{% static "dashboard.js" %}"></script>
+  <div class="row vdivide">
+    <div class="col-sm-4 text-center">
+<div id="user" align="left">
+	<h3> User Info</h3>
+	Email:<span id="email"></span><br><br>
+	Name <br>(First name):<span id="fname"></span><br>
+	(Middle name):<span id="mname"></span><br>
+	(Last name):<span id="lname"></span><br><br>
+	Gender:<span id="gen"></span><br><br>
+	Date of Birth:<span id="dob"></span><br><br>
+	Marital Status:<span id="ms"></span><br><br>
+	Account Status:<span id="as"></span><br><br>
+	Monthly Post Income Salary:<span id="mi"></span><br><br>
+	Pan_no:<span id="Pn"></span><br><br>
+	Phone:<span id="Ph"></span><br><br>
+	Occupation:<span id="occ"></span><br><br>
+	Mothers_maiden Name:<span id="mmn"></span><br><br>
+	Phone_status:<span id="PS"></span><br><br>
+	KYC_id:<span id=""></span><br><br>
+
+<button><a href="/update/">EDIT or ADD</a></button>
+
+</div>
+</div>
+
+<div class="col-sm-4 text-center">
+<div id="goal" align="left">
+<h3>Goal List and Details: </h3>
+list:
+<br><span id="list"></span><br>
+</div>
+<button><a href="/goal/">EDIT or ADD</a></button>
+</div>
+
+<div class="col-sm-4 text-center">
+<h3>your kyc detail:</h3>
+<div align="left">
+	KYC status<span id="kycs"></span><br><br>
+	Proof of Add<span id="poa"></span><br>
+	photo<span id="photo"></span><br>
+	pan<span id="panimg"></span><br>
+</div>
+<button><a href="/goal/">EDIT or ADD</a></button>
+</div>
+</div>
+<button id="clear">Log out</button>
+<script type="text/javascript" src="{% static "logout.js" %}"></script>
+</body>
+</html>

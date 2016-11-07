@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<h1 class="text-center"> </h1>
+  <div class="col-lg-12">
+      <style>
+        .form-signin {
+          max-width: 550px;
+          padding: 15px;
+          margin: 0 auto;
+        }    
+      </style>
+
+
+      <div class="container text-center">
+          <form class="form-signin" id="login_form" method="post" action="/response/">
+            
+            {% csrf_token %}
+            
+
+            <br>
+            <input type="text" name="user" class="form-control1" placeholder="Email" value="" required autofocus>{{form.Email}}
+            <br>
+            <br>
+            <input type="text" name="user" class="form-control2" placeholder="Phone no:" value="" required autofocus>{{form.Phone}}
+            <br>
+            <br>
+            <input type="text" name="user" class="form-control" placeholder="DOB" value="" required autofocus>{{form.date_of_birth}}
+            <br>
+            <br>
+            <input type="text" name="user" class="form-control" placeholder="message" value="" required autofocus>{{form.message}}
+            <br>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+          </form>
+      </div>
+<!--       <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped tablesorter">
+              <thead>
+              <tr>
+                <th class="header"> Username <i class="icon-sort"></i></th>
+                <th class="header"> Blog <i class="icon-sort"></i></th>
+                <th class="header"> Public Repos <i class="icon-sort"></i></th>
+                <th class="header"> Public Gists <i class="icon-sort"></i></th>
+              </tr>
+          </thead>
+          <tbody>
+          
+          
+              <tr>
+                  <td>{{ form.Email }}</td>
+                  <td>{{ form.Phone }}</td>
+                  <td>{{ form.date_of_birth }}</td>
+                  <td>{{ form.message}}</td>
+
+              </tr>
+          
+          
+          </tbody>
+          </table>
+      </div> -->
+    </div>
+</body>
+</html>

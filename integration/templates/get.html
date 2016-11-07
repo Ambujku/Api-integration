@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DashBorad</title>
+</head>
+<body>
+<div class="container">
+<h2> The user description is here: </h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	var x = sessionStorage.getItem('user_id');
+	 $(document).ready(function () {
+	 	$.ajax({
+	 		type: 'GET',
+	 		crossDomain : true,
+			headers: {
+				'access_token': sessionStorage.getItem('access_token'),
+				},
+	 		url = 'http://54.71.104.127:8080/api/v1/'+ x +'/set/goal',
+	 		dataType: 'json',
+	 		success: function (data) {
+	 			$('#email').html(data.email);
+	 			$('#fname').html(data.f_name);
+	 			$('#mname').html(data.m_name);
+	 			$('#lname').html(data.l_name);
+	 			$('#gen').html(data.gender);
+	 			$('#dob').html(data.date_of_birth);
+	 			$('#ms').html(data.marital_status);
+	 			$('#as').html(data.access_status);
+	 			$('#mi').html(data.monthly_post_tax_income);
+	 			$('#Pn').html(data.pan_number);
+	 			$('#occ').html(data.occupation);
+	 			$('#mmn').html(data.mothers_maiden_name);
+	 			$('#PS').html(data.phone_status);
+
+	 			// console.log(data);
+	 			},
+	 		error: function (data) {
+	 			console.log(data);
+	 			}
+
+                 });
+
+             });
+</script>
+<div id="result">
+	Email:<span id="email"></span><br>
+	Name (First name):<span id="fname"></span><br>
+	(Middle name):<span id="mname"></span><br>
+	(Last name):<span id="lname"></span><br>
+	Gender:<span id="gen"></span><br>
+	Date of Birth:<span id="dob"></span><br>
+	Marital Status:<span id="ms"></span><br>
+	Account Status:<span id="as"></span><br>
+	Monthly Post Income Salary:<span id="mi"></span><br>
+	Pan_no:<span id="Pn"></span><br>
+	Phone:<span id="Ph"></span><br>
+	Occupation:<span id="occ"></span><br>
+	Mothers_maiden Name:<span id="mmn"></span><br>
+	Phone_status:<span id="PS"></span><br>
+	KYC_id:<span id=""></span><br>
+
+
+	
+
+
+</div>
+</div>
+</body>
+<!-- sessionStorage.getItem('access_token') -->
+</html>
